@@ -31,7 +31,15 @@
   &__excerpt {
     margin-bottom: half($font-size-base);
   }
-
+  &__info{
+    display: flex;
+    justify-content: space-between;
+  }
+  &__readmore{
+    font-size: $font-size-small;
+    line-height: $line-height-small;
+    color: $color-text;
+  }
   &__date {
     display: block;
     color: $color-gray;
