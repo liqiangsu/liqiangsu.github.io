@@ -12,7 +12,7 @@ image: /images/1200px-jupyter_logo.svg.png
 ---
 My company organised a new team of data analysts. One of the requirements that came to me is that they want a Jupyter server. I had set up a Jupyter server before however, that was a few years ago. Things change a lot since then.
 
-So that's that I understand after I did some research.
+So that's that I understand after I did some research and installed a TLJH.
 
 ## Version
 

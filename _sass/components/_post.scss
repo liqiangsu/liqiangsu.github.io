@@ -53,11 +53,14 @@
   &__image-container{
     max-height: $post-image-height;
     overflow: hidden;
+    text-align: center;
   }
 
   &__image {
+    display: inline;
     max-height: $post-image-height;
-    height: $post-image-height;
+    object-fit: contain;
+    object-position: center;
     margin: 0 auto $base-spacing-unit;
   }
 
