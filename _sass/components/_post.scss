@@ -50,7 +50,14 @@
     }
   }
 
+  &__image-container{
+    max-height: $post-image-height;
+    overflow: hidden;
+  }
+
   &__image {
+    max-height: $post-image-height;
+    height: $post-image-height;
     margin: 0 auto $base-spacing-unit;
   }
 

@@ -28,6 +28,13 @@
     }
   }
 
+  &__image-container{
+    max-height: $post-card-image-height;
+    overflow: hidden;
+  }
+  &__image{
+    max-height: $post-card-image-height;
+  }
   &__excerpt {
     margin-bottom: half($font-size-base);
   }

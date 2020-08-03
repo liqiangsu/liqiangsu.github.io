@@ -5,7 +5,9 @@
   </a>
 
     {% if post.image %}
-      <img src='{{ post.image | prepend: site.baseurl }}' class='c-post__image' alt='{{ post.title }}'>
+      <div class="c-post-card__image-container">
+        <img src='{{ post.image | prepend: site.baseurl }}' class='c-post__image' alt='{{ post.title }}'>
+      </div>
     {% endif %}
 
     <p class='c-post-card__excerpt u-font-medium'>
