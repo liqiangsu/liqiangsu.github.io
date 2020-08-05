@@ -1,12 +1,11 @@
 ---
 layout: post
 title: A faster way to resync an out of sycned mt4 report server
-date: 2020-08-05T00:08:11.000Z
+date: 2020-08-05T10:28:11.000Z
 tags:
   - metatrader 4
-  - mt4
   - report server
-  - hack
+  - recovery
 ---
 
 Metaquote provides a tool for brokers to export their MT4 server data into MYSQL or Postgre server. However, due to its legacy-ness , its synchronisation could have issues from time to time.
@@ -16,21 +15,30 @@ Normally people will just do a **resync**, which will resync the database from t
 In many cases we know that up to a point in time the data integrity is intact. If we could just resync from that point, we could reduce the resync process. And I just got the exact method how you can do that.
 
 ## How it works
-The MetaQuote mt4 report server works by reading data from an MT4 server and writing them into the database. It uses timestamps to keep tract of its synchronising process
+The MetaQuote mt4 report server works by reading data from an MT4 server and writing them into the database. It uses timestamps to keep tract of its synchronising process. The data are contains in the mt4_config table along with mt4_trades and others.
+### The config table
+Config ID|Value int Intger|Value in string 
+-|-|-  
+0|-|-
+1   |the timestamp of the trades|-
+2   |the timestamp of the daily records|-
+3   |-|the group permission of the manager use to synchronise the data
+4   |-|the IP of the dec that use to connect to the MT4 server
+5   |the manager login|-
+1000    |the manager API version|-
 
-## Requirements:
+Obvioursly, what we interested are the rows with the config id 1 and 2.
+
+## Requirements
 1. full access to the database that the report server is running on
 2. have access to the "report server" synchronisation application so that you can stop and start the service.
 
-## Steps:
+## Steps
 1. Stop the synchronization application / Service
 2. Updating the database.
-    - There is a table named "mt4_config" under the database schema.
-    - There are 5 rows of data:
-        - the first row contains the timestamp of the trades
-        - the second row contains the timestamp of the daily records
-        - the rest, I have no idea
-    - Now, if you have out-sync problem only in the mt4_trades table, then change the trade timestamp to the time that you want the synchronisation to continue from. The same for the mt4_daily table, change the daily time stamp.
+    - Locate the mt4_config table.
+    - Change the coresponding timestamps to the time that you want the synchronisation to continue from, for the mt4_trade table or mt4_daily table.
+        - the timestamp as in unix timestamp or epoch time
 3. Restart the service.
 4. Check the log of the service to see it is reading the right timestamp. (Optional)
 
